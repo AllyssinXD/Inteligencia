@@ -6,6 +6,7 @@ interface = devices.Activate(
     IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
 import os
+import psutil
 
 def diminuiVolume(text):
     splitted = text.split(" ")
@@ -41,7 +42,9 @@ def GetTaskExe(text):
     if text == "steam":
         return "steam.exe"
     else:
-        return text+".exe"
+        return text + ".exe"
+
+
 
 def closePrograms(text):
 
@@ -66,7 +69,7 @@ def closePrograms(text):
     print(task)
     taskExe = GetTaskExe(task)
 
-    os.system("taskkill /f /im " + taskExe)
+    os.system("taskkill /f " + taskExe)
 
 def openPrograms(text):
     programsNames = os.listdir(r"C:\Users\aliss\AppData\Roaming\Microsoft\Windows\Start Menu\Programs")

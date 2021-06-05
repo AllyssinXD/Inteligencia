@@ -66,7 +66,7 @@ while continuar:
 
         if "feche" in oration.lower() or "fecha" in oration.lower():
             wm.closePrograms(oration.lower())
-        if "abra" in oration.lower() or "abre" in oration.lower():
+        if ("abra" in oration.lower() or "abre" in oration.lower()) & ("link" in oration.lower() != True or "site" in oration.lower() != True):
             wm.openPrograms(oration.lower())
 
         if "nada não" in oration.lower():
