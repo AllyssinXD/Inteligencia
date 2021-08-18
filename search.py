@@ -9,7 +9,7 @@ def web(text):
 
     for i in range(len(splitted)):
         if splitted[i] != 0:
-            if splitted[i - 1] == "procure" or splitted[i - 1] == "pesquise":
+            if splitted[i - 1] == "procure" or splitted[i - 1] == "pesquise" or splitted[i - 1] == "pesquisa" or splitted[i - 1] == "a" or splitted[i - 1] == "o":
                 assunto = splitted[i]
                 assuntoNum = i
                 research = research + assunto
@@ -25,7 +25,8 @@ def web(text):
         print("gg")
         url = "https://www.google.com/search?q=" + research
     elif "no youtube" in text or "do youtube" in text:
-        url = "https://www.youtube.com/results?search_query=" + research
+        url = "https://www.youtube.com/results?search_query=" + research.replace("no youtube", "")
     else:
         url = "https://www.google.com/search?q=" + research
     webbrowser.open(url)
+    return "Pesquisando " + research

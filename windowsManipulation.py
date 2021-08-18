@@ -16,10 +16,10 @@ def diminuiVolume(text):
     elif splitted[3] == 'volume':
         numero = int(splitted[4])
 
-    while (volume.GetMasterVolumeLevel() - numero * 0.15) <= -64:
+    while (volume.GetMasterVolumeLevel() - numero * 0.15) < -64:
         numero+=1
 
-    volume.SetMasterVolumeLevel(volume.GetMasterVolumeLevel() - numero * 0.15, None)
+    volume.SetMasterVolumeLevel(volume.GetMasterVolumeLevel() - numero * 0.40, None)
 
     print(volume.GetVolumeRange())
 def aumentaVolume(text):
@@ -31,7 +31,7 @@ def aumentaVolume(text):
 
     while (volume.GetMasterVolumeLevel() + numero * 0.15) > 0:
         numero-=1
-    volume.SetMasterVolumeLevel(volume.GetMasterVolumeLevel() + numero * 0.15, None)
+    volume.SetMasterVolumeLevel(volume.GetMasterVolumeLevel() + numero * 0.40, None)
 
 def GetTaskExe(text):
 
@@ -69,7 +69,7 @@ def closePrograms(text):
     print(task)
     taskExe = GetTaskExe(task)
 
-    os.system("taskkill /f " + taskExe)
+    os.system("taskkill /f /im " + taskExe)
 
 def openPrograms(text):
     programsNames = os.listdir(r"C:\Users\aliss\AppData\Roaming\Microsoft\Windows\Start Menu\Programs")
@@ -95,6 +95,8 @@ def openPrograms(text):
     print(program)
     print(programsNames)
 
+    opened = False
+
     os.system(r"cd C:\Users\aliss\AppData\Roaming\Microsoft\Windows\Start Menu\Programs")
     for programName in programsNames:
         if program.replace("program" , "") in programName.lower():
@@ -109,3 +111,5 @@ def openPrograms(text):
                 for programName in programsNames2:
                     if program in programName.lower():
                         os.startfile (dir + programName)
+                        opened = True
+    return opened
